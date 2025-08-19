@@ -1,0 +1,180 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: #000000;
+}
+
+/* 헤더 설정 */
+.header {
+    background: linear-gradient(to top, 
+        #000000, 
+        #475f77 
+    );
+    color: #ffffff;
+    min-width: 1200px; /* 최소 너비 설정 */
+    height: auto; /* 높이를 자동으로 설정 */
+    padding-top: 40px; /* 위아래 여백 추가 */
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    position: relative;
+    
+   
+    
+    
+   
+}
+
+/* HIII CINEMA 고정 */
+.logo {
+    position: absolute; /* 절대 위치 */
+    left: 50%; /* 화면의 50% 위치 */
+    transform: translateX(-50%); /* 중앙 정렬 */
+    margin: 0;
+    font-size: 45px;
+    color: #ffffff; /* 하얀색으로 변경 */
+    text-align: center; /* 중앙 정렬 */
+}
+
+.logo a {
+    color: #ffffff; /* 하얀색으로 변경 */
+    text-decoration: none; /* 링크의 밑줄 제거 */
+}
+
+/* 내비게이션 바 설정 */
+.header-container {
+	
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-between; /* 양쪽 정렬 */
+    width: 100%;
+    padding: 0 20px; /* 좌우 여백 추가 */
+    position: relative; /* 자식 요소의 절대 위치를 위해 추가 */
+}
+
+.navbar2 {
+	width: 100%;
+   /*  padding-left:1250px; */
+    display: flex;
+    margin-top: 30px;
+	/* justify-content: center; */
+	 justify-content: flex-end; /* 오른쪽 정렬 */
+	 margin-right: 100px; /* 오른쪽 여백 추가 */
+	 min-width: 1600px;
+	 
+}
+
+/* navbar1은 아래쪽 중앙 정렬 */
+.navbar1 {
+    width: 100%; /* 전체 너비 */
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    margin-top: 70px; /* 위쪽 여백 추가 */
+}
+
+
+/* .nav-links2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+} */
+
+/* 내비게이션 링크 설정 */
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin: 0 15px; /* 각 항목 사이에 좌우 여백 추가 */
+
+}
+.navbar1 .nav-links li {
+    padding-left:25px; /* 각 항목 사이에 좌우 여백 추가 */
+    padding-right:25px;
+    font-size:20px;
+}
+
+.nav-links a {
+    color: #ffffff; /* 링크 색상 하얀색으로 변경 */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+	text-decoration: none; /* 링크의 밑줄 제거 */
+    /* text-decoration: underline;  *//* 호버 시 밑줄 추가 */
+}
+
+
+
+
+
+/* 내비게이션 링크 설정 */
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin: 0 15px; /* 각 항목 사이에 좌우 여백 추가 */
+    position: relative; /* 호버 효과를 위해 위치 설정 */
+}
+
+.nav-links a {
+    color: #ffffff; /* 링크 색상 하얀색으로 변경 */
+    text-decoration: none;
+    font-weight: bold;
+    position: relative; /* 아이콘 위치를 상대적으로 설정 */
+}
+
+
+
+
+
+/* 기본 아이콘 숨김 */
+.nav-links a::after {
+    content: ""; /* 내용 없음 */
+    display: none; /* 기본적으로 숨김 */
+    position: absolute; /* 절대 위치 */
+    left: 50%; /* 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬 */
+    bottom: +40px; /* 텍스트 아래에 위치 */
+    width: 45px; /* 아이콘 너비 */
+    height: 45px; /* 아이콘 높이 */
+    background-size: contain; /* 이미지 크기 조정 */
+   /*  margin-top:10px; */
+}
+
+/* 각 링크에 대해 다른 이미지 설정 */
+.icon-chart::after {
+    background-image: url('/Header_image/chart-icon.png'); /* 영화 아이콘 */
+}
+
+.icon-cinema::after {
+    background-image: url('/Header_image/cinema-icon.png'); /* 극장 아이콘 */
+}
+
+.icon-ticket::after {
+    background-image: url('/Header_image/ticket-icon.png'); /* 예매 아이콘 */
+}
+
+.icon-store::after {
+    background-image: url('/Header_image/store-icon.png'); /* 스토어 아이콘 */
+}
+
+/* 호버 시 텍스트 숨기고 아이콘 보이기 */
+.nav-links a:hover::after {
+    display: block; /* 호버 시 아이콘 보이도록 설정 */
+}

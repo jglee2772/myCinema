@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cinema.service.FAQDAO">
+
+    <resultMap id="FAQResultMap" type="com.cinema.service.FAQDTO">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="views" column="views"/>
+        <result property="selected" column="selected"/>
+    </resultMap>
+
+    <select id="getAllFAQs" parameterType="map" resultMap="FAQResultMap">
+        SELECT * FROM faq
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="getTotalFAQCount" resultType="int">
+        SELECT COUNT(*) FROM faq
+    </select>
+
+    <select id="getFAQById" parameterType="long" resultMap="FAQResultMap">
+        SELECT * FROM faq WHERE id = #{id}
+    </select>
+
+    <insert id="addFAQ" parameterType="com.cinema.service.FAQDTO">
+        INSERT INTO faq (title, content, created_at, views, selected) 
+        VALUES (#{title}, #{content}, #{created_at}, #{views}, #{selected})
+    </insert>
+
+    <update id="updateFAQ" parameterType="com.cinema.service.FAQDTO">
+    UPDATE faq
+    SET title = #{title}, content = #{content}, views = views + 1, selected = #{selected}
+    WHERE id = #{id}
+</update>
+
+    <delete id="deleteFAQ" parameterType="long">
+        DELETE FROM faq WHERE id = #{id}
+    </delete>
+
+    <!-- 검색어를 기반으로 FAQ 목록을 가져오는 쿼리 -->
+    <select id="getFAQsByKeyword" parameterType="map" resultMap="FAQResultMap">
+        SELECT * FROM faq
+        WHERE title LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY created_at DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+   
+    <select id="getTotalFAQCountByKeyword" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM faq
+        WHERE title LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+    
+        <select id="getFAQsBySelected" resultType="com.cinema.service.FAQDTO">
+        SELECT *
+        FROM faq
+        WHERE selected = #{selected}
+        ORDER BY created_at DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- 선택된 항목을 기반으로 FAQ 총 개수를 가져오는 쿼리 -->
+    <select id="getTotalFAQCountBySelected" resultType="int">
+        SELECT COUNT(*)
+        FROM faq
+        WHERE selected = #{selected}
+    </select>
+
+</mapper>

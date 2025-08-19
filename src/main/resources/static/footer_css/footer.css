@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.footer {
+background: linear-gradient(to bottom, 
+    #000000, /* 검정색 */
+    #475f77  /* 미드나잇 골드 */
+);
+    color: white;
+    text-align: center;
+    padding: 10px 0; /* 상하 패딩만 설정하여 좌우 여백 제거 */
+    /* position: fixed; */
+    bottom: 0;
+	min-width: 1200px; /* 최소 너비 설정 */
+    box-sizing: border-box; /* 패딩을 포함한 전체 너비 계산 */
+    z-index: 1000; /* 다른 요소들보다 위에 위치 */
+ 	margin-top: 100px;
+}
+
+

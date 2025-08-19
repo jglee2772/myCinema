@@ -1,0 +1,263 @@
+@charset "UTF-8";
+ body{
+	color:white;
+} 
+.manager-page{
+	margin-bottom:120px;
+	height:1100px;
+	margin-top:100px;
+	
+}
+#bestlist tbody td,select{
+	width:200px;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+.tdleft {
+	text-align:left;
+}
+.tdcenter {
+	text-align:center;
+}
+.movieinsert1{
+	border:1px solid white;
+	width:300px;
+	margin:15px;
+	height: 500px;
+	border-radius:6px;
+}
+.movieinsert2{
+	border:1px solid white;
+	width:1200px;
+	margin:15px;
+	 height: 500px;
+     overflow-y: auto; 
+     border-radius:6px;
+     display: flex;
+     justify-content: center;
+}
+.movieinsert3{
+	border:1px solid white;
+	width:310px;
+	margin:15px;
+	 height: 600px;
+     overflow-y: auto; 
+     border-radius:6px;
+}
+.movieinsert4{
+	border:1px solid white;
+	margin:15px;
+	width:1500px;
+	 height: 600px;
+     overflow-y: auto; 
+     border-radius:6px;
+     display: flex;
+     justify-content: center;
+}
+.iteminfo{
+	border:1px solid white;
+	margin:15px;
+	width:300px;
+	 height:600px;
+     overflow-y: auto; 
+     border-radius:6px;
+     
+}
+.itembox{
+	border:1px solid white;
+	margin:15px;
+	width:1500px;
+	 height: 600px;
+     overflow-y: auto; 
+     border-radius:6px;
+          display: flex;
+     justify-content: center;
+}
+.answerbox{
+	border:1px solid white;
+	margin:15px;
+	width:700px;
+	 height: 560px;
+     overflow-y: auto; 
+     border-radius:6px;
+}
+.newsupbox{
+	border:1px solid white;
+	margin:15px;
+	width:700px;
+	 height: 600px;
+     overflow-y: auto; 
+     border-radius:6px;
+}
+.newsbox{
+	border:1px solid white;
+	margin:15px;
+	width:985px;
+	 height: 600px;
+     overflow-y: auto; 
+     border-radius:6px;
+          display: flex;
+     justify-content: center;
+}
+#itemlist tr:hover,
+#inquirylist tr:hover,
+#newslist tr:hover,
+#roomlist tr:hover{
+	background-color:red;
+}
+.sales{
+	border:1px solid white;
+	margin:15px;
+	width:800px;
+	 height: 600px;
+     overflow-y: auto; 
+     border-radius:6px;
+         /*  display: flex;
+     justify-content: center; */
+     margin:15px;
+}
+
+.roomupbox{
+	border:1px solid white;
+	margin:15px;
+	width:300px;
+	height: 250px;
+    overflow-y: auto; 
+    border-radius:6px;
+}
+.roombox{
+	border:1px solid white;
+	margin:15px;
+	width:500px;
+    height: 600px;
+    overflow-y: auto; 
+    border-radius:6px;
+    display: flex;
+    justify-content: center;
+}
+.inquirybox{
+	border:1px solid white;
+	margin:15px;
+	width:985px;
+	 height: 560px;
+     overflow-y: auto; 
+     border-radius:6px;
+          display: flex;
+     justify-content: center;
+}
+.bestbox{
+	border:1px solid white;
+	margin:15px;
+	width:1000px;
+	height: 400px;
+	position: absolute;
+	top:630px;
+    left: 330px;
+    padding: 10px;
+    border-radius:6px;
+    overflow-y: auto; 
+    border-radius:6px;
+    display: flex;
+    justify-content: center;
+    margin-bottom:150px;
+}
+.salesbox{
+	border:1px solid white;
+	margin:15px;
+	width:1000px;
+	height: 200px;
+	position: absolute;
+	top:630px;
+    left: 330px;
+    padding: 10px;
+    border-radius:6px;
+    overflow-y: auto; 
+    border-radius:6px;
+    display: flex;
+    justify-content: center;
+    margin-bottom:150px;
+}
+.mselect{
+	width:180px
+}
+.container{
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 700px;
+    visibility: hidden; /* 요소를 숨기지만 공간은 유지 */
+   	opacity: 0;
+   	
+}
+.visible {
+    visibility: visible; /* 요소를 보이게 함 */
+    opacity: 1; /* 요소를 불투명하게 함 */   
+}
+thead tr{
+	position: sticky;
+	 top: 0; 
+     z-index: 10; 
+     background-color:white;
+     
+}
+td{
+	height:30px;
+}
+#totallist td{
+	width:150px;
+}
+
+#schedules tbody td,
+#movieinfo tbody td,
+#itemlist tbody td,
+#inquirylist tbody td,
+#newslist tbody td,
+#roomlist tbody td,
+#bestlist tbody td,
+#spaylist tbody td,
+#mpaylist tbody td{
+	height:40px;
+}
+
+.movietext{
+	   max-width: 180px; 
+       max-height: 40px;
+       overflow: auto;
+       white-space: nomal;
+       text-overflow: ellipsis;
+       display:block;
+       
+  
+}
+#schedules thead td,
+#movieinfo thead td,
+#itemlist thead td,
+#inquirylist thead td,
+#newslist thead td,
+#roomlist thead td,
+#bestlist thead td,
+#spaylist thead td,
+#mpaylist thead td{
+	border-bottom:2px solid white;
+	background-color:black;
+}
+input,textarea,select{
+	border-radius:5px;
+}
+.mainbutton{
+	 background-color: black;
+            color: white;
+            border: none; 
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius:6px;
+            border:1px solid white;
+            margin:10px;
+}
+.mainbutton:hover{
+	 background-color: red;
+
+}

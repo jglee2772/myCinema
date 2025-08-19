@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cinema.service.NewsDAO">
+
+    <!-- ResultMap 정의 -->
+    <resultMap id="newsResultMap" type="com.cinema.service.NewsDTO">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="created_at" column="createdAt"/>
+        <result property="views" column="views"/>
+        <result property="selected" column="selected"/> <!-- New attribute -->
+    </resultMap>
+
+    <!-- 모든 뉴스 항목 조회 (페이지네이션 포함) -->
+    <select id="getAllNews" parameterType="map" resultMap="newsResultMap">
+        SELECT
+            id,
+            title,
+            content,
+            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            views,
+            selected
+        FROM news
+        ORDER BY created_at DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <!-- 총 뉴스 수 조회 -->
+    <select id="getTotalNewsCount" resultType="int">
+        SELECT COUNT(*) FROM news
+    </select>
+
+    <!-- 검색어를 포함하여 뉴스 항목 조회 (페이지네이션 포함) -->
+    <select id="getNewsByKeyword" parameterType="map" resultMap="newsResultMap">
+        SELECT
+            id,
+            title,
+            content,
+            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            views,
+            selected
+        FROM news
+        WHERE title LIKE CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY created_at DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <!-- 검색어를 포함하여 총 뉴스 수 조회 -->
+    <select id="getTotalNewsCountByKeyword" parameterType="map" resultType="int">
+        SELECT COUNT(*) 
+        FROM news
+        WHERE title LIKE CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <!-- 선택된 항목으로 뉴스 조회 (페이지네이션 포함) -->
+    <select id="getNewsBySelected" parameterType="map" resultMap="newsResultMap">
+        SELECT
+            id,
+            title,
+            content,
+            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            views,
+            selected
+        FROM news
+        WHERE selected = #{selected}
+        ORDER BY created_at DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <!-- 선택된 항목으로 총 뉴스 수 조회 -->
+    <select id="getTotalNewsCountBySelected" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM news
+        WHERE selected = #{selected}
+    </select>
+
+    <!-- 뉴스 항목 추가 -->
+    <insert id="insertNews" parameterType="com.cinema.service.NewsDTO">
+        INSERT INTO news (title, content, created_at, views, selected)
+        VALUES (#{title}, #{content}, NOW(), #{views}, #{selected})
+    </insert>
+    
+    <!-- 뉴스 항목 업데이트 -->
+    <update id="updateNews" parameterType="com.cinema.service.NewsDTO">
+        UPDATE news
+        SET
+            title = #{title},
+            content = #{content},
+            views = #{views},
+            selected = #{selected} <!-- Update selected field -->
+        WHERE id = #{id}
+    </update>
+    
+    <!-- ID로 뉴스 항목 삭제 -->
+    <delete id="deleteNews" parameterType="Long">
+        DELETE FROM news
+        WHERE id = #{id}
+    </delete>
+    
+    <!-- ID로 뉴스 항목 조회 -->
+    <select id="getNewsById" parameterType="Long" resultMap="newsResultMap">
+        SELECT
+            id,
+            title,
+            content,
+            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            views,
+            selected
+        FROM news
+        WHERE id = #{id}
+    </select>
+    
+    <!-- 조회수 증가 쿼리 -->
+    <update id="incrementViewCount">
+        UPDATE news
+        SET views = views + 1
+        WHERE id = #{id}
+    </update>
+
+</mapper>

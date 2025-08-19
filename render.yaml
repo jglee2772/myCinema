@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mgcinema
+    env: java
+    buildCommand: ./gradlew build
+    startCommand: java -jar build/libs/MGcinema-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SERVER_PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
