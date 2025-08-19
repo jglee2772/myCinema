@@ -19,7 +19,7 @@
         select b.id, b.sname, b.seatlevel from schedules a, room b
 		where a.room_id = b.id
 		and movie_id=#{movieId}
-		and moviedate=#{date}
+		and a.moviedate=#{date}::date
 		group by sname, seatlevel, b.id
 		order by b.id
     </select>
@@ -33,7 +33,7 @@
 		where a.room_id = b.id
 		and b.seatinfo_id = c.id
 		and a.movie_id=#{movieId}
-		and a.moviedate=#{date}
+		and a.moviedate=#{date}::date
 		and b.sname=#{roomId}
 		order by a.begintime
     </select>
@@ -52,7 +52,7 @@
 		where a.room_id=b.id
 		and a.movie_id=#{movieId}
 		and b.sname=#{roomId}
-		and a.moviedate=#{moviedate}
+		and a.moviedate=#{moviedate}::date
 		and a.begintime=#{begintime}
 	</select>
 	
@@ -76,10 +76,11 @@
 	
 	<update id="updateSeat">
 		UPDATE schedules a
-		JOIN movie b ON a.movie_id = b.id
-		JOIN room c ON a.room_id = c.id
-		SET a.lestseat = a.lestseat - #{param5}
-		WHERE a.moviedate = #{param3}
+		SET lestseat = a.lestseat - #{param5}
+		FROM movie b, room c
+		WHERE a.movie_id = b.id
+		  AND a.room_id = c.id
+		  AND a.moviedate = #{param3}::date
 		  AND a.begintime = #{param4}
 		  AND b.mname = #{param1}
 		  AND c.Sname = #{param2}

@@ -18,7 +18,7 @@
             id,
             title,
             content,
-            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            TO_CHAR(created_at, 'YYYY-MM-DD') AS createdAt,
             views,
             selected
         FROM news
@@ -37,11 +37,11 @@
             id,
             title,
             content,
-            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            TO_CHAR(created_at, 'YYYY-MM-DD') AS createdAt,
             views,
             selected
         FROM news
-        WHERE title LIKE CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%')
+        WHERE title LIKE '%' || #{keyword} || '%' OR content LIKE '%' || #{keyword} || '%'
         ORDER BY created_at DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
@@ -50,7 +50,7 @@
     <select id="getTotalNewsCountByKeyword" parameterType="map" resultType="int">
         SELECT COUNT(*) 
         FROM news
-        WHERE title LIKE CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%')
+        WHERE title LIKE '%' || #{keyword} || '%' OR content LIKE '%' || #{keyword} || '%'
     </select>
 
     <!-- 선택된 항목으로 뉴스 조회 (페이지네이션 포함) -->
@@ -59,7 +59,7 @@
             id,
             title,
             content,
-            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            TO_CHAR(created_at, 'YYYY-MM-DD') AS createdAt,
             views,
             selected
         FROM news
@@ -104,7 +104,7 @@
             id,
             title,
             content,
-            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            TO_CHAR(created_at, 'YYYY-MM-DD') AS createdAt,
             views,
             selected
         FROM news

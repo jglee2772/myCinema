@@ -10,8 +10,8 @@
 	where a.seatinfo_id=b.id order by a.id
 </select>
 <insert id="schedules">
-	insert into schedules set movie_id=#{param1}, room_id=#{param2}, moviedate=#{param3}, begintime=#{param4},
-	endtime=#{param5}, lestseat=#{param6}, a_price=#{param7}, y_price=#{param8}, timetype=#{param9}
+	insert into schedules (movie_id, room_id, moviedate, begintime, endtime, lestseat, a_price, y_price, timetype)
+	values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9})
 </insert>
 <select id="getschedules" resultType="com.cinema.management.ScheDTO">
 	select a.id,b.mname,a.moviedate,b.runningtime,b.age,c.Sname,c.seatlevel,a.lestseat,a.begintime,
@@ -38,11 +38,12 @@
 	select * from movie order by id desc
 </select>
 <insert id="moviein">
-	insert into movie set mname=#{param1}, age=#{param2}, runningtime=#{param3}, imagepath=#{param4}, director=#{param5},
-							cast=#{param6}, genre=#{param7}, releasedate=#{param8}, movieinfo=#{param9}, reservation=#{param10}, avgrate=#{param11}
+	insert into movie (mname, age, runningtime, imagepath, director, movie_cast, genre, releasedate, movieinfo, reservation, avgrate)
+	values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9}, #{param10}, #{param11})
 </insert>
 <insert id="newsin">
-	insert into news set title=#{param1}, content=#{param2},selected=#{param3}, created_at=CURDATE()
+	insert into news (title, content, selected, created_at)
+	values (#{param1}, #{param2}, #{param3}, CURRENT_DATE)
 </insert>
 <select id="itemlist" resultType="com.cinema.management.ItemDTO">
 	select * from item order by id desc
@@ -56,13 +57,14 @@
 	where a.id=b.customer_id order by created desc
 </select>
 <insert id="itemin">
-	insert into item set item_name=#{param1}, price=#{param2}, discount_price=#{param3}, composition=#{param4}, origin=#{param5}, image_path=#{param6}, item_type=#{param7}, period=#{param8}
+	insert into item (item_name, price, discount_price, composition, origin, image_path, item_type, period)
+	values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8})
 </insert>
 <update id="inquiryup">
-	update inquiry set answer=#{param2}, current="답변완료", ancreated =now() where id=#{param1}
+	update inquiry set answer=#{param2}, current='답변완료', ancreated =now() where id=#{param1}
 </update>
 <update id="newsup">
-	update news set title=#{param2}, content=#{param3},selected=#{param4}, created_at =CURDATE() where id=#{param1}
+	update news set title=#{param2}, content=#{param3}, selected=#{param4}, created_at =CURRENT_DATE where id=#{param1}
 </update>
 <update id="roomup">
 	update room set seatlevel=#{param2}, adult_price=#{param3}, young_price=#{param4} where id=#{param1}

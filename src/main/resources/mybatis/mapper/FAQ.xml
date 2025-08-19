@@ -43,7 +43,7 @@
     <!-- 검색어를 기반으로 FAQ 목록을 가져오는 쿼리 -->
     <select id="getFAQsByKeyword" parameterType="map" resultMap="FAQResultMap">
         SELECT * FROM faq
-        WHERE title LIKE CONCAT('%', #{keyword}, '%')
+        WHERE title LIKE '%' || #{keyword} || '%'
         ORDER BY created_at DESC
         LIMIT #{size} OFFSET #{offset}
     </select>
@@ -52,7 +52,7 @@
     <select id="getTotalFAQCountByKeyword" parameterType="string" resultType="int">
         SELECT COUNT(*)
         FROM faq
-        WHERE title LIKE CONCAT('%', #{keyword}, '%')
+        WHERE title LIKE '%' || #{keyword} || '%'
     </select>
     
         <select id="getFAQsBySelected" resultType="com.cinema.service.FAQDTO">
