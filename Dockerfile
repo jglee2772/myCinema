@@ -5,6 +5,9 @@ WORKDIR /app
 # Gradle wrapper와 소스 코드 복사
 COPY . .
 
+# gradlew에 실행 권한 부여
+RUN chmod +x ./gradlew
+
 # Gradle 빌드 실행
 RUN ./gradlew build
 
