@@ -36,12 +36,16 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+	// JSP 관련 의존성
 	implementation group:'org.glassfish.web', name:'jakarta.servlet.jsp.jstl', version:'2.0.0'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0'
+	implementation 'org.glassfish:jakarta.el:4.0.2'
+	
+	// JSON 관련 의존성
 	implementation 'org.json:json:20210307'
-    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
-    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-     implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
 tasks.named('test') {
