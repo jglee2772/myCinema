@@ -23,7 +23,7 @@ RUN gradle build
 
 # 빌드된 파일 확인 및 복사
 RUN ls -la build/libs/
-RUN cp build/libs/*.war app.jar
+RUN cp build/libs/MGcinema-0.0.1-SNAPSHOT.war app.jar
 
 EXPOSE 8080
 
