@@ -37,6 +37,9 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	
+	// 테스트용 H2 데이터베이스
+	testRuntimeOnly 'com.h2database:h2'
+	
 	// JSP 관련 의존성
 	implementation group:'org.glassfish.web', name:'jakarta.servlet.jsp.jstl', version:'2.0.0'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'

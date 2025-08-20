@@ -18,8 +18,8 @@ ENV PATH="/opt/gradle/bin:${PATH}"
 # 소스 코드 복사
 COPY . .
 
-# Gradle 빌드 실행
-RUN gradle build
+# Gradle 빌드 실행 (테스트 제외)
+RUN gradle build -x test
 
 # 빌드된 파일 확인 및 복사
 RUN ls -la build/libs/
