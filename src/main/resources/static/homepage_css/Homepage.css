@@ -5,7 +5,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #000000;
-    margin-top: 120px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,6 +18,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; /* 중앙 정렬 */
+    margin-top: 120px;
 }
 
 /* 슬라이더를 전체 화면에 맞게 조정 */
