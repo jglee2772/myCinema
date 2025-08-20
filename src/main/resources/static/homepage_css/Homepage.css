@@ -8,6 +8,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
 }
 
 /* 메인 콘텐츠 영역 */
@@ -16,17 +17,20 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
 }
 
 /* 슬라이더를 전체 화면에 맞게 조정 */
 .promo-container {
     flex: 1; /* 남은 공간을 모두 차지 */
     width: 100%; /* 전체 너비 */
-    height: calc(100vh - 200px); /* 헤더 높이를 제외한 전체 높이 */
+    max-width: 100vw; /* 뷰포트 너비 제한 */
+    height: calc(100vh - 250px); /* 헤더 높이를 제외한 전체 높이 (거리 추가) */
     overflow: hidden; /* 슬라이더가 컨테이너를 넘어서지 않도록 설정 */
     position: relative; /* 포지션을 상대적으로 설정 */
-    margin: 0; /* 마진 제거 */
-    padding: 0; /* 패딩 제거 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 20px 0; /* 상하 패딩으로 헤더와 거리 확보 */
+    box-sizing: border-box; /* 패딩을 포함한 크기 계산 */
 }
 
 .image-slide {
@@ -38,6 +42,7 @@ body {
     padding: 0; /* 패딩 제거 */
     max-width: 100%;
     max-height: 100%;
+    display: block; /* 블록 레벨 요소로 설정 */
 }
 
 /* slick-carousel 기본 스타일 */
@@ -58,24 +63,43 @@ body {
 
 .slick-list {
     height: 100%; /* 전체 높이 사용 */
+    overflow: hidden; /* 오버플로우 숨김 */
 }
 
 /* 슬라이더 컨테이너 */
 .slider {
     width: 100%;
     height: 100%;
+    position: relative; /* 상대 위치 설정 */
 }
 
 /* 반응형 디자인 */
+@media (max-width: 1200px) {
+    .promo-container {
+        height: calc(100vh - 220px);
+        padding: 15px 0;
+    }
+}
+
 @media (max-width: 768px) {
     .promo-container {
-        height: calc(100vh - 150px); /* 모바일에서는 헤더 높이 조정 */
+        height: calc(100vh - 180px); /* 모바일에서는 헤더 높이 조정 */
+        padding: 10px 0;
     }
 }
 
 @media (max-width: 480px) {
     .promo-container {
-        height: calc(100vh - 120px); /* 작은 화면에서 헤더 높이 더 조정 */
+        height: calc(100vh - 150px); /* 작은 화면에서 헤더 높이 더 조정 */
+        padding: 5px 0;
+    }
+}
+
+/* 브라우저 확대/축소 대응 */
+@media screen and (max-width: 100vw) {
+    .promo-container {
+        width: 100vw;
+        max-width: 100vw;
     }
 }
 
