@@ -38,4 +38,49 @@ public class TestController {
             return "테스트 실패: " + e.getMessage();
         }
     }
+    
+    @GetMapping("/test/static")
+    public String testStatic() {
+        return """
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>정적 리소스 테스트</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 20px; }
+                    .test-section { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+                    .success { color: green; }
+                    .error { color: red; }
+                </style>
+            </head>
+            <body>
+                <h1>정적 리소스 테스트</h1>
+                
+                <div class="test-section">
+                    <h2>CSS 파일 테스트</h2>
+                    <p>아래 링크들이 정상적으로 작동하는지 확인하세요:</p>
+                    <ul>
+                        <li><a href="/Header_css/Header.css" target="_blank">Header CSS</a></li>
+                        <li><a href="/homepage_css/homepage.css" target="_blank">Homepage CSS</a></li>
+                    </ul>
+                </div>
+                
+                <div class="test-section">
+                    <h2>이미지 파일 테스트</h2>
+                    <p>아래 이미지들이 정상적으로 표시되는지 확인하세요:</p>
+                    <ul>
+                        <li><a href="/homepage_image/image_05.jpg" target="_blank">Image 05</a></li>
+                        <li><a href="/homepage_image/image_06.jpg" target="_blank">Image 06</a></li>
+                        <li><a href="/homepage_image/로비2.jpeg" target="_blank">로비2</a></li>
+                    </ul>
+                </div>
+                
+                <div class="test-section">
+                    <h2>직접 이미지 표시</h2>
+                    <img src="/homepage_image/image_05.jpg" alt="Test Image" style="max-width: 300px;">
+                </div>
+            </body>
+            </html>
+            """;
+    }
 }
