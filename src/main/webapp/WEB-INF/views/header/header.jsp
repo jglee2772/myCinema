@@ -93,6 +93,11 @@
             font-size: 16px;
         }
 
+        /* navbar1의 링크 폰트 크기 조정 */
+        .navbar1 .nav-links a {
+            font-size: 20px;
+        }
+
         .nav-links a:hover {
             color: #ffd700;
         }
