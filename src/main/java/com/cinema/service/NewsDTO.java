@@ -1,7 +1,7 @@
 package com.cinema.service;
 
 import lombok.Data;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Data
@@ -10,7 +10,7 @@ public class NewsDTO {
     private String title;
     private String content;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
     private int views;
     private String selected;    
 }
