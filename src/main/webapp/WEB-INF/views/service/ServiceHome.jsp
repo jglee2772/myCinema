@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -73,7 +74,7 @@
         		<li class="notice_item">
             		<a href="newsDetail?id=${news.id}" class="notice_list">[${news.selected}] ${news.title}
             		</a>
-            		<div class="notice_date">${news.createdAt}
+            		<div class="notice_date"><fmt:formatDate value="${news.createdAt}" pattern="yyyy-MM-dd" />
             		</div>
         		</li>
     				</c:forEach>

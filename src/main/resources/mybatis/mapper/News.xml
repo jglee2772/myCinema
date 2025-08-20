@@ -18,7 +18,7 @@
             id,
             title,
             content,
-            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            created_at AS createdAt,
             views,
             selected
         FROM news
@@ -37,11 +37,11 @@
             id,
             title,
             content,
-            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            created_at AS createdAt,
             views,
             selected
         FROM news
-        WHERE title LIKE CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%')
+        WHERE title LIKE '%' || #{keyword} || '%' OR content LIKE '%' || #{keyword} || '%'
         ORDER BY created_at DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
@@ -59,7 +59,7 @@
             id,
             title,
             content,
-            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            created_at AS createdAt,
             views,
             selected
         FROM news
@@ -104,7 +104,7 @@
             id,
             title,
             content,
-            DATE_FORMAT(created_at, '%Y-%m-%d') AS createdAt,
+            created_at AS createdAt,
             views,
             selected
         FROM news
