@@ -74,7 +74,7 @@
         		<li class="notice_item">
             		<a href="newsDetail?id=${news.id}" class="notice_list">[${news.selected}] ${news.title}
             		</a>
-            		<div class="notice_date"><fmt:formatDate value="${news.createdAt}" pattern="yyyy-MM-dd" />
+            		<div class="notice_date">${news.createdAt}
             		</div>
         		</li>
     				</c:forEach>

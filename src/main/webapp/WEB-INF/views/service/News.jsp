@@ -93,7 +93,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
-                                <td class="created"><fmt:formatDate value="${news.createdAt}" pattern="yyyy-MM-dd" /></td>
+                                <td class="created">${news.createdAt}</td>
                                 <td class="view">${news.views}</td>
                             </tr>
                         </c:forEach>
