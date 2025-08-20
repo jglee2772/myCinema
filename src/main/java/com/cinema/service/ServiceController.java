@@ -61,6 +61,8 @@ public class ServiceController {
             return "service/ServiceHome";
         } catch (Exception e) {
             System.err.println("=== ServiceHome 컨트롤러 에러 발생 ===");
+            System.err.println("에러 메시지: " + e.getMessage());
+            System.err.println("에러 타입: " + e.getClass().getName());
             e.printStackTrace();
             return "redirect:/";
         }
@@ -222,6 +224,8 @@ public class ServiceController {
             return "service/News";
         } catch (Exception e) {
             System.err.println("=== News 컨트롤러 에러 발생 ===");
+            System.err.println("에러 메시지: " + e.getMessage());
+            System.err.println("에러 타입: " + e.getClass().getName());
             e.printStackTrace();
             return "redirect:/";
         }
