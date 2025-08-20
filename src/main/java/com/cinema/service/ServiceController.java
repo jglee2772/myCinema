@@ -3,6 +3,7 @@ package com.cinema.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,21 +29,41 @@ public class ServiceController {
 
     @GetMapping("/serviceHome")
     public String getServiceHome(@RequestParam(value = "id", defaultValue = "1") int id, Model model, HttpSession session) {
-        ServiceHomeDTO serviceHome = new ServiceHomeDTO();
-
-        // 뉴스 목록 가져오기
-        List<NewsDTO> newsList = newsDAO.getAllNews(10, 0); // 예시로 10개 뉴스 가져오기
-        model.addAttribute("newsList", newsList);
-
-        // 고객 정보 세션에 저장
-        String uid = (String) session.getAttribute("uid"); // uid를 세션에서 가져옴
-        if (uid != null) {
-            CustomerDTO cusDTO = mdao.getCustomerInfoByUid(uid);
-            session.setAttribute("cusDTO", cusDTO);
+        System.out.println("=== ServiceHome 컨트롤러 호출됨 ===");
+        
+        try {
+            ServiceHomeDTO serviceHome = new ServiceHomeDTO();
+            model.addAttribute("serviceHome", serviceHome);
+            
+            // 뉴스 목록 가져오기
+            System.out.println("뉴스 목록 조회 시작...");
+            List<NewsDTO> newsList = null;
+            try {
+                // 먼저 총 뉴스 수를 확인
+                int totalCount = newsDAO.getTotalNewsCount();
+                System.out.println("총 뉴스 수: " + totalCount);
+                
+                newsList = newsDAO.getAllNews(10, 0); // 예시로 10개 뉴스 가져오기
+                System.out.println("뉴스 목록 조회 완료: " + (newsList != null ? newsList.size() : "null") + "개");
+                if (newsList != null && !newsList.isEmpty()) {
+                    System.out.println("첫 번째 뉴스 제목: " + newsList.get(0).getTitle());
+                    System.out.println("첫 번째 뉴스 ID: " + newsList.get(0).getId());
+                    System.out.println("첫 번째 뉴스 selected: " + newsList.get(0).getSelected());
+                }
+            } catch (Exception e) {
+                System.err.println("뉴스 목록 조회 중 에러 발생: " + e.getMessage());
+                e.printStackTrace();
+                newsList = new ArrayList<>(); // 빈 리스트로 초기화
+            }
+            model.addAttribute("newsList", newsList);
+            
+            System.out.println("=== ServiceHome 컨트롤러 정상 완료 ===");
+            return "service/ServiceHome";
+        } catch (Exception e) {
+            System.err.println("=== ServiceHome 컨트롤러 에러 발생 ===");
+            e.printStackTrace();
+            return "redirect:/";
         }
-
-        model.addAttribute("serviceHome", serviceHome);
-        return "service/ServiceHome";
     }
     @GetMapping("/faq")
     public String showFAQPage(
@@ -159,35 +180,51 @@ public class ServiceController {
             @RequestParam(value = "search", defaultValue = "") String search,
             @RequestParam(value = "selected", defaultValue = "") String selected, // 추가된 부분
             Model model) {
-    	
-        int offset = (page - 1) * size;
-        List<NewsDTO> newsList;
-        int totalNewsCount;
+        
+        System.out.println("=== News 컨트롤러 호출됨 ===");
+        System.out.println("page: " + page + ", size: " + size + ", search: " + search + ", selected: " + selected);
+        
+        try {
+            int offset = (page - 1) * size;
+            List<NewsDTO> newsList;
+            int totalNewsCount;
 
-        if (search.isEmpty() && selected.isEmpty()) {
-            // 검색어와 선택된 항목이 없는 경우
-        	
-            newsList = newsDAO.getAllNews(size, offset);
-            totalNewsCount = newsDAO.getTotalNewsCount();
-        } else if (!search.isEmpty()) {
-            // 검색어가 있는 경우
-            newsList = newsDAO.getNewsByKeyword(search, size, offset);
-            totalNewsCount = newsDAO.getTotalNewsCountByKeyword(search);
-        } else {
-            // 선택된 항목이 있는 경우
-            newsList = newsDAO.getNewsBySelected(selected, size, offset);
-            totalNewsCount = newsDAO.getTotalNewsCountBySelected(selected);
+            if (search.isEmpty() && selected.isEmpty()) {
+                // 검색어와 선택된 항목이 없는 경우
+                System.out.println("전체 뉴스 조회 시작...");
+                newsList = newsDAO.getAllNews(size, offset);
+                totalNewsCount = newsDAO.getTotalNewsCount();
+            } else if (!search.isEmpty()) {
+                // 검색어가 있는 경우
+                System.out.println("검색어로 뉴스 조회 시작...");
+                newsList = newsDAO.getNewsByKeyword(search, size, offset);
+                totalNewsCount = newsDAO.getTotalNewsCountByKeyword(search);
+            } else {
+                // 선택된 항목이 있는 경우
+                System.out.println("선택된 항목으로 뉴스 조회 시작...");
+                newsList = newsDAO.getNewsBySelected(selected, size, offset);
+                totalNewsCount = newsDAO.getTotalNewsCountBySelected(selected);
+            }
+            
+            System.out.println("뉴스 목록 조회 완료: " + (newsList != null ? newsList.size() : "null") + "개");
+            System.out.println("총 뉴스 수: " + totalNewsCount);
+            
+            int totalPages = (int) Math.ceil((double) totalNewsCount / size);
+            model.addAttribute("newsList", newsList);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", totalPages);
+            model.addAttribute("size", size);
+            model.addAttribute("search", search);
+            model.addAttribute("selected", selected); // 추가된 부분
+            model.addAttribute("totalNewsCount", totalNewsCount);
+
+            System.out.println("=== News 컨트롤러 정상 완료 ===");
+            return "service/News";
+        } catch (Exception e) {
+            System.err.println("=== News 컨트롤러 에러 발생 ===");
+            e.printStackTrace();
+            return "redirect:/";
         }
-        int totalPages = (int) Math.ceil((double) totalNewsCount / size);
-        model.addAttribute("newsList", newsList);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("size", size);
-        model.addAttribute("search", search);
-        model.addAttribute("selected", selected); // 추가된 부분
-        model.addAttribute("totalNewsCount", totalNewsCount);
-
-        return "service/News";
     }
     @GetMapping("/newsDetail")
     public String showNewsDetailPage(

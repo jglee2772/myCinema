@@ -92,7 +92,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
-                                <td class="created">${news.created_at}</td>
+                                <td class="created">${news.createdAt}</td>
                                 <td class="view">${news.views}</td>
                             </tr>
                         </c:forEach>

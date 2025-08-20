@@ -73,7 +73,7 @@
         		<li class="notice_item">
             		<a href="newsDetail?id=${news.id}" class="notice_list">[${news.selected}] ${news.title}
             		</a>
-            		<div class="notice_date">${news.created_at}
+            		<div class="notice_date">${news.createdAt}
             		</div>
         		</li>
     				</c:forEach>

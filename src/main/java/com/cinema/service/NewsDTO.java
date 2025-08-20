@@ -8,7 +8,7 @@ public class NewsDTO {
     private Long id;
     private String title;
     private String content;
-    private String created_at;
+    private String createdAt;
     private int views;
     private String selected;    
 }
