@@ -29,7 +29,6 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
@@ -37,8 +36,9 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	
-	// 테스트용 H2 데이터베이스
-	testRuntimeOnly 'com.h2database:h2'
+	// 개발 환경 H2 데이터베이스
+	runtimeOnly 'com.h2database:h2'
+	// 프로덕션 환경 PostgreSQL
 	
 	// JSP 관련 의존성
 	implementation group:'org.glassfish.web', name:'jakarta.servlet.jsp.jstl', version:'2.0.0'

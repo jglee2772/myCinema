@@ -19,7 +19,7 @@
                  ${param1}
              </when>
          </choose>
-         limit ${param3}, ${param2}
+         limit ${param2} offset ${param3}
 	</select>
 	
 <select id ="chartList1" resultType="com.cinema.chart.chartDTO">
@@ -45,18 +45,28 @@
     ) AS ratio
 	</select>	
 	<update id="updatereservation">
-	UPDATE movie a
-JOIN ( SELECT movie_name , ROUND(
-            (SUM(totalpeople) * 100.0 / (SELECT SUM(totalpeople) FROM moviepay)), 
-            1 ) AS ratio FROM moviepay GROUP BY movie_name) b ON a.mname = b.movie_name
-SET a.reservation = b.ratio WHERE a.mname = #{param1}
+	UPDATE movie 
+SET reservation = (
+    SELECT ROUND(
+        (SUM(totalpeople) * 100.0 / (SELECT SUM(totalpeople) FROM moviepay)), 
+        1
+    ) 
+    FROM moviepay 
+    WHERE movie_name = movie.mname 
+    GROUP BY movie_name
+)
+WHERE mname = #{param1}
 	</update>
 	<update id="updaterenewal">
 	UPDATE movie
-JOIN ( SELECT movie_name, ROUND(
-            (SUM(totalpeople) * 100.0 / (SELECT SUM(totalpeople) FROM moviepay)), 
-            1) AS ratio FROM moviepay GROUP BY movie_name ) AS calculated_ratios
-ON movie.mname = calculated_ratios.movie_name
-SET movie.reservation = calculated_ratios.ratio
+SET reservation = (
+    SELECT ROUND(
+        (SUM(totalpeople) * 100.0 / (SELECT SUM(totalpeople) FROM moviepay)), 
+        1
+    ) 
+    FROM moviepay 
+    WHERE movie_name = movie.mname 
+    GROUP BY movie_name
+)
 	</update>	
 </mapper>

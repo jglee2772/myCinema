@@ -78,7 +78,7 @@
     <!-- 뉴스 항목 추가 -->
     <insert id="insertNews" parameterType="com.cinema.service.NewsDTO">
         INSERT INTO news (title, content, created_at, views, selected)
-        VALUES (#{title}, #{content}, NOW(), #{views}, #{selected})
+        VALUES (#{title}, #{content}, CURRENT_TIMESTAMP, #{views}, #{selected})
     </insert>
     
     <!-- 뉴스 항목 업데이트 -->

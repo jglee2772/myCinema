@@ -9,7 +9,7 @@
 		FROM storepay
 		WHERE customer_id = #{customerId}
 		ORDER BY created DESC
-		LIMIT #{offset}, #{limit}
+		LIMIT #{limit} OFFSET #{offset}
 	</select>
 
 	<select id="getTotalCount" parameterType="String"
@@ -34,7 +34,7 @@
 		updated)
 		VALUES (#{customer_id}, #{id},
 		#{item_name}, #{totalprice}, #{created},
-		NOW())
+		CURRENT_TIMESTAMP)
 	</insert>
 
 	<!-- 결제 내역 삭제 (id 기반) -->

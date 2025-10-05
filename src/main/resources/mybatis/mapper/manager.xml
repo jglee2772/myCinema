@@ -61,7 +61,7 @@
 	values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8})
 </insert>
 <update id="inquiryup">
-	update inquiry set answer=#{param2}, current='답변완료', ancreated =now() where id=#{param1}
+	update inquiry set answer=#{param2}, current='답변완료', ancreated =CURRENT_TIMESTAMP where id=#{param1}
 </update>
 <update id="newsup">
 	update news set title=#{param2}, content=#{param3}, selected=#{param4}, created_at =CURRENT_DATE where id=#{param1}

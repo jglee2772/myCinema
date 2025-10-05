@@ -36,7 +36,7 @@
 		mobile = #{mobile},
 		tellecom =
 		#{tellecom},
-		updated = NOW(),
+		updated = CURRENT_TIMESTAMP,
 		birthday = #{birthday},
 		profileimg =
 		#{profileimg},
@@ -70,15 +70,14 @@
 		WHERE customer_id = #{customerId}
 		ORDER
 		BY created DESC
-		LIMIT #{offset}, #{limit}
+		LIMIT #{limit} OFFSET #{offset}
 	</select>
 
 	<!-- 1:1 문의 작성 -->
 	<insert id="inquiryWrite"
 		parameterType="com.cinema.mypage.InquiryDTO">
-		INSERT INTO inquiry
-		SET customer_id = #{customer_id},
-		title = #{title}, content = #{content}
+		INSERT INTO inquiry (customer_id, title, content)
+		VALUES (#{customer_id}, #{title}, #{content})
 	</insert>
 
 	<!-- 1:1 문의 상세 조회 -->
