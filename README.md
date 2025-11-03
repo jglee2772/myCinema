@@ -14,10 +14,10 @@ Spring Boot 기반의 영화관 웹사이트로, 영화 예매, 스토어, 관�
 ## 🛠️ 기술 스택
 
 - **Backend**: Spring Boot 3.3.2, Java 17, MyBatis
-- **Database**: MySQL (개발), PostgreSQL (프로덕션)
+- **Database**: MySQL
 - **Frontend**: JSP, CSS3, JavaScript, jQuery
 - **Build Tool**: Gradle
-- **Deployment**: Render
+- **Deployment**: Railway
 
 ## 📁 프로젝트 구조
 
@@ -40,9 +40,9 @@ src/main/java/com/cinema/
 - **데이터베이스**: MySQL (로컬)
 - **프로파일**: dev
 
-### 프로덕션 환경 (Render)
-- **포트**: 10000
-- **데이터베이스**: PostgreSQL (Render)
+### 프로덕션 환경 (Railway)
+- **포트**: 8080 (또는 Railway가 제공하는 PORT)
+- **데이터베이스**: MySQL (Railway)
 - **프로파일**: prod
 
 ## 🔧 환경 설정
@@ -83,15 +83,17 @@ java -jar build/libs/MGcinema-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 - **입력 검증**: 서버 사이드 검증
 - **에러 정보 숨김**: 프로덕션 환경에서 스택 트레이스 비표시
 
-## 📝 환경 변수 (Render)
+## 📝 환경 변수 (Railway)
 
-다음 환경 변수를 Render 대시보드에서 설정해야 합니다:
+다음 환경 변수를 Railway 대시보드에서 설정해야 합니다:
 
 - `SPRING_PROFILES_ACTIVE`: prod
-- `SERVER_PORT`: 10000
-- `DATABASE_URL`: PostgreSQL 연결 URL
+- `SERVER_PORT`: 8080 (또는 Railway가 제공하는 PORT)
+- `DATABASE_URL`: MySQL 연결 URL (jdbc:mysql://호스트:포트/데이터베이스명?옵션)
 - `DATABASE_USERNAME`: 데이터베이스 사용자명
 - `DATABASE_PASSWORD`: 데이터베이스 비밀번호
+
+자세한 배포 방법은 `RAILWAY_DEPLOY.md` 파일을 참고하세요.
 
 ## 🐛 문제 해결
 
