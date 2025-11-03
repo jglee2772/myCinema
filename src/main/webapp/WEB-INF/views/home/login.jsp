@@ -14,11 +14,11 @@
         <form action="/doLogin" method="post">
             <div class="form-group">
                 <label for="uid">아이디</label>
-                <input type="text" id="uid" name="uid" placeholder="아이디를 입력해주세요." required>
+                <input type="text" id="uid" name="uid" placeholder="아이디를 입력해주세요." value="admin" required>
             </div>
             <div class="form-group">
                 <label for="passwd">비밀번호</label>
-                <input type="password" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요." required>
+                <input type="password" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요." value="1234" required>
             </div>
             <button type="submit">로그인</button>
             <c:if test="${not empty errorMessage}">
