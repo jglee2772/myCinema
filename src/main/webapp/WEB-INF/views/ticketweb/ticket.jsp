@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화예매</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/ticket_css/styles.css">
 </head>
 <body>
