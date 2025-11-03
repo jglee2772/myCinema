@@ -27,4 +27,6 @@ RUN cp build/libs/MGcinema-0.0.1-SNAPSHOT.war app.jar
 
 EXPOSE 8080
 
+ENV SPRING_PROFILES_ACTIVE=prod
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
