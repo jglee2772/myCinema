@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HIII CINEMA - 홈페이지</title>
+    <link rel="icon" href="data:,">
     <!-- 절대 경로로 CSS 파일 링크 -->
     <link rel="stylesheet" href="/homepage_css/homepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">

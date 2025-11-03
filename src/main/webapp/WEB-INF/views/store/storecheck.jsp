@@ -3,6 +3,7 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" href="data:,">
     <script src="https://js.tosspayments.com/v2/standard"></script>
     <style>
       #successSave {
@@ -84,6 +85,11 @@
     	  ]);
 
     	  button.addEventListener("click", async function () {
+    	    // 전화번호에서 특수문자 제거 (숫자만 남김)
+    	    const mobilePhone = "${mobile}".replace(/[^0-9]/g, '');
+    	    console.log("원본 전화번호:", "${mobile}");
+    	    console.log("정리된 전화번호:", mobilePhone);
+    	    
     	    await widgets.requestPayment({
     	      orderId: "${orderId}",
     	      orderName: orderName,
@@ -97,7 +103,7 @@
     	      failUrl: window.location.origin + "/storefail",
     	      customerEmail: "${email}",
     	      customerName: "${realname}",
-    	      customerMobilePhone: "${mobile}",
+    	      customerMobilePhone: mobilePhone,
     	    });
     	  });
     	}

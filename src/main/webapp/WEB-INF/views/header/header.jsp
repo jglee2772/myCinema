@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Header Component</title>
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="/Header_css/Header.css">
     
     <!-- 인라인 CSS 추가 (정적 리소스 로드 실패 시 대비) -->
